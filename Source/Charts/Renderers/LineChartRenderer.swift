@@ -69,7 +69,8 @@ open class LineChartRenderer: LineRadarRenderer
         }
         
         context.setLineCap(dataSet.lineCapType)
-        
+        context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
+		
         // if drawing cubic lines is enabled
         switch dataSet.mode
         {
@@ -84,7 +85,6 @@ open class LineChartRenderer: LineRadarRenderer
             drawHorizontalBezier(context: context, dataSet: dataSet)
         }
         
-		context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
         context.restoreGState()
     }
     
@@ -180,6 +180,7 @@ open class LineChartRenderer: LineRadarRenderer
 		{
 			context.beginPath()
 			context.addPath(cubicPath)
+			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 			context.setStrokeColor(drawingColor.cgColor)
 			context.strokePath()
 		}
@@ -254,6 +255,7 @@ open class LineChartRenderer: LineRadarRenderer
 		{
 			context.beginPath()
 			context.addPath(cubicPath)
+			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 			context.setStrokeColor(drawingColor.cgColor)
 			context.strokePath()
 		}
@@ -737,6 +739,7 @@ open class LineChartRenderer: LineRadarRenderer
                 continue
             }
         
+			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
             context.setStrokeColor(set.highlightColor.cgColor)
             context.setLineWidth(set.highlightLineWidth)
             if set.highlightLineDashLengths != nil
@@ -848,6 +851,7 @@ open class LineChartRenderer: LineRadarRenderer
 		
 		let gradientPath = spline.copy(strokingWithWidth: dataSet.lineWidth, lineCap: .butt, lineJoin: .miter, miterLimit: 10)
 		context.addPath(gradientPath)
+		context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 		context.drawPath(using: .fill)
 		
 		let boundingBox = gradientPath.boundingBox
