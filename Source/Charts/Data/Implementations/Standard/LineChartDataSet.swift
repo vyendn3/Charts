@@ -152,6 +152,10 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
             _fillFormatter = newValue ?? DefaultFillFormatter()
         }
     }
+	
+	open var lineShadowColor: NSUIColor? = nil
+	open var lineShadowOffset: CGSize = .zero
+	open var lineShadowBlur: CGFloat = 0
     
     // MARK: NSCopying
     
@@ -168,6 +172,10 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.lineCapType = lineCapType
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCircleHoleEnabled = drawCircleHoleEnabled
+		copy.lineShadowBlur = lineShadowBlur
+		copy.lineShadowOffset = lineShadowOffset
+		copy.lineShadowColor = lineShadowColor
+		copy.gradientPositions = gradientPositions
         copy.mode = mode
         copy._fillFormatter = _fillFormatter
         return copy
