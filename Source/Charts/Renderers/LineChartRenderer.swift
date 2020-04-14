@@ -739,7 +739,6 @@ open class LineChartRenderer: LineRadarRenderer
                 continue
             }
         
-			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
             context.setStrokeColor(set.highlightColor.cgColor)
             context.setLineWidth(set.highlightLineWidth)
             if set.highlightLineDashLengths != nil
