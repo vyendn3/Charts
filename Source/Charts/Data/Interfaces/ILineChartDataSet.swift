@@ -20,6 +20,8 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     
     // MARK: - Styling functions and accessors
     
+	var gradientPositions: [CGFloat]? { get set }
+	
     /// The drawing mode for this line dataset
     ///
     /// **default**: Linear
