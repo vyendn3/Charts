@@ -84,6 +84,7 @@ open class LineChartRenderer: LineRadarRenderer
             drawHorizontalBezier(context: context, dataSet: dataSet)
         }
         
+		context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
         context.restoreGState()
     }
     
@@ -179,7 +180,6 @@ open class LineChartRenderer: LineRadarRenderer
 		{
 			context.beginPath()
 			context.addPath(cubicPath)
-			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 			context.setStrokeColor(drawingColor.cgColor)
 			context.strokePath()
 		}
@@ -254,7 +254,6 @@ open class LineChartRenderer: LineRadarRenderer
 		{
 			context.beginPath()
 			context.addPath(cubicPath)
-			context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 			context.setStrokeColor(drawingColor.cgColor)
 			context.strokePath()
 		}
@@ -923,7 +922,6 @@ open class LineChartRenderer: LineRadarRenderer
 		context.beginPath()
 		context.addPath(gradientPath)
 		context.clip()
-		context.setShadow(offset: dataSet.lineShadowOffset, blur: dataSet.lineShadowBlur, color: dataSet.lineShadowColor?.cgColor)
 		context.drawLinearGradient(gradient!, start: gradientStart, end: gradientEnd, options: [])
 	}
 }
