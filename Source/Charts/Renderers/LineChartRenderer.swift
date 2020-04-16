@@ -872,10 +872,7 @@ open class LineChartRenderer: LineRadarRenderer
 		}
 		
 		//Set middle colors
-		guard let gradientPositions = dataSet.gradientPositions else
-		{
-			fatalError("Must set `gradientPositions if `dataSet.colors` is l")
-		}
+		let gradientPositions = dataSet.gradientPositions ?? [0, 1]
 		
 		for position in gradientPositions
 		{
