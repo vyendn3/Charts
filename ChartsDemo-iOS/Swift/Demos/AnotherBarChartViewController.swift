@@ -33,7 +33,8 @@ class AnotherBarChartViewController: DemoBaseViewController {
                         .saveToGallery,
                         .togglePinchZoom,
                         .toggleData,
-                        .toggleBarBorders]
+                        .toggleBarBorders,
+						.toggleBarGradient]
         
         chartView.delegate = self
         

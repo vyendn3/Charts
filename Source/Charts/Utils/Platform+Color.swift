@@ -12,6 +12,7 @@
 #if canImport(UIKit)
 import UIKit
 
+public typealias NSUIBezierPath = UIBezierPath
 public typealias NSUIColor = UIColor
 private func fetchLabelColor() -> UIColor
 {
@@ -36,6 +37,7 @@ extension UIColor
 
 import AppKit
 
+public typealias NSUIBezierPath = NSBezierPath
 public typealias NSUIColor = NSColor
 private func fetchLabelColor() -> NSColor
 {

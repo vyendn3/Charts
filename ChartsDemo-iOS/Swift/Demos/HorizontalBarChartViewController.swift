@@ -35,6 +35,7 @@ class HorizontalBarChartViewController: DemoBaseViewController {
                         .toggleAutoScaleMinMax,
                         .toggleData,
 						.toggleBarBorders,
+						.toggleBarGradient,
 						.toggleRoundedBarsTopCorners,
 						.toggleRoundedBarsAllCorners]
         

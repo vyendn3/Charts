@@ -278,7 +278,7 @@ open class HorizontalBarChartRenderer: BarChartRenderer
 				let bezierPath = UIBezierPath(roundedRect: barRect, byRoundingCorners: dataSet.barRoundingCorners, cornerRadii: cornerRadius)
 				context.addPath(bezierPath.cgPath)
 				#endif
-				context.fillPath()
+				drawBar(context: context, dataSet: dataSet, index: j, bezierPath: bezierPath)
 				
 				if drawBorder
 				{
@@ -289,7 +289,8 @@ open class HorizontalBarChartRenderer: BarChartRenderer
 			}
 			else
 			{
-				context.fill(barRect)
+				let bezierPath = NSUIBezierPath(rect: barRect)
+				drawBar(context: context, dataSet: dataSet, index: j, bezierPath: bezierPath)
 				
 				if drawBorder
 				{

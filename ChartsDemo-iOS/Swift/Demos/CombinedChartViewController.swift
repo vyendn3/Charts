@@ -35,6 +35,7 @@ class CombinedChartViewController: DemoBaseViewController {
                         .saveToGallery,
                         .toggleData,
 						.toggleBarBorders,
+						.toggleBarGradient,
 						.toggleRoundedBarsTopCorners,
 						.toggleRoundedBarsAllCorners,
                         .removeDataSet]

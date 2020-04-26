@@ -36,7 +36,8 @@ class BarChartViewController: DemoBaseViewController {
                         .saveToGallery,
                         .togglePinchZoom,
                         .toggleData,
-                        .toggleBarBorders,
+						.toggleBarBorders,
+						.toggleBarGradient,
 						.toggleRoundedBarsTopCorners,
 						.toggleRoundedBarsAllCorners]
         

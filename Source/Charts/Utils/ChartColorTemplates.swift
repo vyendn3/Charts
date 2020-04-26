@@ -78,6 +78,14 @@ open class ChartColorTemplates: NSObject
             NSUIColor(red: 52/255.0, green: 152/255.0, blue: 219/255.0, alpha: 1.0)
         ]
     }
+	
+	@objc open class func gradients () -> [[NSUIColor]]
+	{
+		let palette = joyful()
+		return [[palette[0], palette[1]],
+				[palette[2], palette[3]],
+				[palette[4], palette[0]]]
+	}
     
     @objc open class func colorFromString(_ colorString: String) -> NSUIColor
     {

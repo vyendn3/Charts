@@ -49,6 +49,7 @@ enum Option {
     case toggleHighlightCircle
 	case toggleRoundedBarsAllCorners
 	case toggleRoundedBarsTopCorners
+	case toggleBarGradient
     
     var label: String {
         switch self {
@@ -89,6 +90,7 @@ enum Option {
         case .toggleHighlightCircle: return "Toggle highlight circle"
 		case .toggleRoundedBarsAllCorners: return "All Corners Rounded"
 		case .toggleRoundedBarsTopCorners: return "Top Corners Rounded"
+		case .toggleBarGradient: return "Toggle Bar Gradient"
         }
     }
 }
@@ -196,6 +198,17 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
 				}
 			})
 			chartView.setNeedsDisplay()
+			
+		case .toggleBarGradient:
+			for set in chartView.data!.dataSets as! [BarChartDataSet] {
+				if set.barGradientColors == nil {
+					set.barGradientColors = ChartColorTemplates.gradients()
+					set.barGradientOrientation = chartView is HorizontalBarChartView ? .horizontal : .vertical
+				} else {
+					set.barGradientColors = nil
+				}
+			}
+			chartView.notifyDataSetChanged()
 			
         default:
             break
