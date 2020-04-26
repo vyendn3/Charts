@@ -47,6 +47,8 @@ enum Option {
     case toggleYLabels
     case toggleRotate
     case toggleHighlightCircle
+	case toggleRoundedBarsAllCorners
+	case toggleRoundedBarsTopCorners
     
     var label: String {
         switch self {
@@ -85,6 +87,8 @@ enum Option {
         case .toggleYLabels: return "Toggle Y-Labels"
         case .toggleRotate: return "Toggle Rotate"
         case .toggleHighlightCircle: return "Toggle highlight circle"
+		case .toggleRoundedBarsAllCorners: return "All Corners Rounded"
+		case .toggleRoundedBarsTopCorners: return "Top Corners Rounded"
         }
     }
 }
@@ -169,6 +173,30 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
                 }
             }
             chartView.setNeedsDisplay()
+			
+		case .toggleRoundedBarsAllCorners:
+			(chartView as? BarChartView)?.drawRoundedBarEnabled = true
+			chartView.data?.dataSets.forEach({ (set) in
+				if let chartSet = set as? IBarChartDataSet {
+					chartSet.barRoundingCorners = .allCorners
+				}
+			})
+			chartView.setNeedsDisplay()
+			
+		case .toggleRoundedBarsTopCorners:
+			(chartView as? BarChartView)?.drawRoundedBarEnabled = true
+			chartView.data?.dataSets.forEach({ (set) in
+				if let chartSet = set as? IBarChartDataSet {
+					if chartView is HorizontalBarChartView {
+						chartSet.barRoundingCorners = [.topRight, .bottomRight]
+					}
+					else {
+						chartSet.barRoundingCorners = [.topLeft, .topRight]
+					}
+				}
+			})
+			chartView.setNeedsDisplay()
+			
         default:
             break
         }

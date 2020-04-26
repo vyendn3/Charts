@@ -34,7 +34,9 @@ class HorizontalBarChartViewController: DemoBaseViewController {
                         .togglePinchZoom,
                         .toggleAutoScaleMinMax,
                         .toggleData,
-                        .toggleBarBorders]
+						.toggleBarBorders,
+						.toggleRoundedBarsTopCorners,
+						.toggleRoundedBarsAllCorners]
         
         self.setup(barLineChartView: chartView)
 

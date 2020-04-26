@@ -34,7 +34,9 @@ class CombinedChartViewController: DemoBaseViewController {
                         .toggleBarValues,
                         .saveToGallery,
                         .toggleData,
-                        .toggleBarBorders,
+						.toggleBarBorders,
+						.toggleRoundedBarsTopCorners,
+						.toggleRoundedBarsAllCorners,
                         .removeDataSet]
         
         chartView.delegate = self

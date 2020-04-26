@@ -153,6 +153,39 @@
         
         [chartView setNeedsDisplay];
     }
+	
+	if ([key isEqualToString:@"toggleRoundedBarsAllCorners"])
+	{
+		((BarChartView *)chartView).drawRoundedBarEnabled = YES;
+		for (id<IBarChartDataSet, NSObject> set in chartView.data.dataSets)
+		{
+			if ([set conformsToProtocol:@protocol(IBarChartDataSet)])
+			{
+				set.barRoundingCorners = UIRectCornerAllCorners
+			}
+		}
+		[chartView setNeedsDisplay];
+	}
+	
+	if ([key isEqualToString:@"toggleRoundedBarsTopCorners"])
+	{
+		((BarChartView *)chartView).drawRoundedBarEnabled = YES;
+		
+		for (id<IBarChartDataSet, NSObject> set in chartView.data.dataSets)
+		{
+			if ([set conformsToProtocol:@protocol(IBarChartDataSet)])
+			{
+				if ([chartView isKindOfClass: HorizontalBarChatView.class]) {
+					set.barRoundingCorners = UIRectCornerTopRight | UIRectCornerBottomRight;
+				}
+				else {
+					set.barRoundingCorners = UIRectCornerTopLeft | UIRectCornerTopRight;
+				}
+			}
+		}
+		
+		[chartView setNeedsDisplay];
+	}
 }
 
 #pragma mark - Actions

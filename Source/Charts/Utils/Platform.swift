@@ -242,4 +242,54 @@ func NSUIMainScreen() -> NSUIScreen?
     return NSUIScreen.main
 }
 
+extension NSBezierPath
+{
+	var cgPath: CGPath
+	{
+		let mutablePath = CGMutablePath()
+		var points = [CGPoint](repeating: .zero, count: 3)
+		for i in 0 ..< elementCount
+		{
+			let type = element(at: i, associatedPoints: &points)
+			switch type
+			{
+				case .moveTo:
+					mutablePath.move(
+						to: CGPoint(
+							x: points[0].x,
+							y: points[0].y
+						)
+				)
+				case .lineTo:
+					mutablePath.addLine(
+						to: CGPoint(
+							x: points[0].x,
+							y: points[0].y
+						)
+				)
+				case .curveTo:
+					mutablePath.addCurve(
+						to: CGPoint(
+							x: points[2].x,
+							y: points[2].y
+						),
+						control1: CGPoint(
+							x: points[0].x,
+							y: points[0].y
+						),
+						control2: CGPoint(
+							x: points[1].x,
+							y: points[1].y
+						)
+				)
+				case .closePath:
+					mutablePath.closeSubpath()
+				@unknown default:
+					mutablePath.closeSubpath()
+			}
+		}
+		return mutablePath
+	}
+}
+
 #endif
