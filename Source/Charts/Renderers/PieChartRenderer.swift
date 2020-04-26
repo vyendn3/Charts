@@ -306,8 +306,8 @@ open class PieChartRenderer: DataRenderer
         // get whole the radius
         let radius = chart.radius
         let rotationAngle = chart.rotationAngle
-        var drawAngles = chart.drawAngles
-        var absoluteAngles = chart.absoluteAngles
+		let drawAngles = chart.drawAngles
+		let absoluteAngles = chart.absoluteAngles
 
         let phaseX = animator.phaseX
         let phaseY = animator.phaseY
@@ -321,14 +321,14 @@ open class PieChartRenderer: DataRenderer
 
         let labelRadius = radius - labelRadiusOffset
 
-        var dataSets = data.dataSets
+		let dataSets = data.dataSets
 
         let yValueSum = (data as! PieChartData).yValueSum
 
         let drawEntryLabels = chart.isDrawEntryLabelsEnabled
         let usePercentValuesEnabled = chart.usePercentValuesEnabled
-        let entryLabelColor = chart.entryLabelColor
-        let entryLabelFont = chart.entryLabelFont
+//        let entryLabelColor = chart.entryLabelColor
+//        let entryLabelFont = chart.entryLabelFont
 
         var angle: CGFloat = 0.0
         var xIndex = 0
