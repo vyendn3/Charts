@@ -177,16 +177,20 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
             chartView.setNeedsDisplay()
 			
 		case .toggleRoundedBarsAllCorners:
-			(chartView as? BarChartView)?.drawRoundedBarEnabled = true
+			guard let barChartView = chartView as? BarChartView else { return }
+			barChartView.drawRoundedBarEnabled = true
 			chartView.data?.dataSets.forEach({ (set) in
 				if let chartSet = set as? IBarChartDataSet {
 					chartSet.barRoundingCorners = .allCorners
+					chartSet.barCornerRadius = 10
 				}
 			})
 			chartView.setNeedsDisplay()
+			chartView.notifyDataSetChanged()
 			
 		case .toggleRoundedBarsTopCorners:
-			(chartView as? BarChartView)?.drawRoundedBarEnabled = true
+			guard let barChartView = chartView as? BarChartView else { return }
+			barChartView.drawRoundedBarEnabled = true
 			chartView.data?.dataSets.forEach({ (set) in
 				if let chartSet = set as? IBarChartDataSet {
 					if chartView is HorizontalBarChartView {
@@ -195,9 +199,11 @@ class DemoBaseViewController: UIViewController, ChartViewDelegate {
 					else {
 						chartSet.barRoundingCorners = [.topLeft, .topRight]
 					}
+					chartSet.barCornerRadius = 10
 				}
 			})
 			chartView.setNeedsDisplay()
+			chartView.notifyDataSetChanged()
 			
 		case .toggleBarGradient:
 			for set in chartView.data!.dataSets as! [BarChartDataSet] {

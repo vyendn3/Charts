@@ -496,7 +496,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
 			// Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
 			let fillColor = dataSet.color(atIndex: index).cgColor
 			context.setFillColor(fillColor)
-			context.fill(bezierPath.bounds)
+			context.addPath(bezierPath.cgPath)
+			context.fillPath()
 		}
 	}
 	
