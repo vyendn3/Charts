@@ -270,7 +270,7 @@ open class HorizontalBarChartRenderer: BarChartRenderer
 
 			if dataProvider.isDrawRoundedBarEnabled
 			{
-				let cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+				let cornerRadius = dataSet.barCornerRadius > 0 ? CGSize(width: dataSet.barCornerRadius, height: dataSet.barCornerRadius) : CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
 				#if os(OSX)
 				let bezierPath = NSBezierPath(roundedRect: barRect, xRadius: cornerRadius.width, yRadius: cornerRadius.height)
 				context.addPath(bezierPath.cgPath)
