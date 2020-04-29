@@ -879,7 +879,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 
 				if dataProvider.isDrawRoundedBarEnabled
 				{
-					let cornerRadius = CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
+					let cornerRadius = set.barCornerRadius > 0 ? CGSize(width: set.barCornerRadius, height: set.barCornerRadius) : CGSize(width: barRect.width / 2.0, height: barRect.width / 2.0)
 					#if os(OSX)
 					let bezierPath = NSBezierPath(roundedRect: barRect, xRadius: cornerRadius.width, yRadius: cornerRadius.height)
 					context.addPath(bezierPath.cgPath)
