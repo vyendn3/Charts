@@ -14,6 +14,8 @@ import CoreGraphics
 
 open class LineChartRenderer: LineRadarRenderer
 {
+	public var onCircleRendered: ((Int, CGRect) -> Void)? = nil
+	
     // TODO: Currently, this nesting isn't necessary for LineCharts. However, it will make it much easier to add a custom rotor
     // that navigates between datasets.
     // NOTE: Unlike the other renderers, LineChartRenderer populates accessibleChartElements in drawCircles due to the nature of its drawing options.
@@ -594,12 +596,12 @@ open class LineChartRenderer: LineRadarRenderer
 
         for i in 0 ..< dataSets.count
         {
-            guard let dataSet = lineData.getDataSetByIndex(i) as? ILineChartDataSet else { continue }
-            
-            if !dataSet.isVisible || dataSet.entryCount == 0
-            {
-                continue
-            }
+			guard
+				let dataSet = lineData.getDataSetByIndex(i) as? ILineChartDataSet,
+				dataSet.drawCirclesEnabled,
+				dataSet.isVisible,
+				dataSet.entryCount > 0
+				else { continue }
             
             let trans = dataProvider.getTransformer(forAxis: dataSet.axisDependency)
             let valueToPixelMatrix = trans.valueToPixelMatrix
@@ -637,14 +639,6 @@ open class LineChartRenderer: LineRadarRenderer
                     continue
                 }
                 
-                
-                // Skip Circles and Accessibility if not enabled,
-                // reduces CPU significantly if not needed
-                if !dataSet.isDrawCirclesEnabled
-                {
-                    continue
-                }
-                
                 // Accessibility element geometry
                 let scaleFactor: CGFloat = 3
                 let accessibilityRect = CGRect(x: pt.x - (scaleFactor * circleRadius),
@@ -672,6 +666,8 @@ open class LineChartRenderer: LineRadarRenderer
                 rect.size.width = circleDiameter
                 rect.size.height = circleDiameter
 
+				onCircleRendered?(j, rect)
+				
                 if drawTransparentCircleHole
                 {
                     // Begin path for circle with hole
