@@ -14,7 +14,7 @@ import CoreGraphics
 
 open class LineChartRenderer: LineRadarRenderer
 {
-	public var onCircleRendered: ((Int, CGRect) -> Void)? = nil
+	public var onCircleRendered: ((IChartDataSet, Int, CGRect) -> Void)? = nil
 	
     // TODO: Currently, this nesting isn't necessary for LineCharts. However, it will make it much easier to add a custom rotor
     // that navigates between datasets.
@@ -666,7 +666,7 @@ open class LineChartRenderer: LineRadarRenderer
                 rect.size.width = circleDiameter
                 rect.size.height = circleDiameter
 
-				onCircleRendered?(j, rect)
+				onCircleRendered?(dataSet, j, rect)
 				
                 if drawTransparentCircleHole
                 {
