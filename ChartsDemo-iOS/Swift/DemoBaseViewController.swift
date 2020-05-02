@@ -32,6 +32,7 @@ enum Option {
     case removeDataSet
     // CubicLineSampleFillFormatter
     case toggleFilled
+	case toggleGradient
     case toggleCircles
     case toggleCubic
     case toggleHorizontalCubic
@@ -73,6 +74,7 @@ enum Option {
         case .removeDataSet: return "Remove Random Set"
         // CubicLineSampleFillFormatter
         case .toggleFilled: return "Toggle Filled"
+		case .toggleGradient: return "Toggle Gradient"
         case .toggleCircles: return "Toggle Circles"
         case .toggleCubic: return "Toggle Cubic"
         case .toggleHorizontalCubic: return "Toggle Horizontal Cubic"

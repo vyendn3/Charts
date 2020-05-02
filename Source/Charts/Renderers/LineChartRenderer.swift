@@ -835,7 +835,7 @@ open class LineChartRenderer: LineRadarRenderer
 		
 		// create a new path
 		let to = Int(ceil(CGFloat(to - from) * phaseX + CGFloat(from)))
-		for i in (from + 1)..<to
+		for i in (from + 1)..<max(to, from + 1)
 		{
 			guard let e = dataSet.entryForIndex(i) else { continue }
 			generatedPath.addLine(to: CGPoint(x: CGFloat(e.x), y: CGFloat(e.y) * phaseY), transform: matrix)

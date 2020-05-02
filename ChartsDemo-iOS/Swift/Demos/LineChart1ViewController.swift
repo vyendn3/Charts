@@ -26,6 +26,7 @@ class LineChart1ViewController: DemoBaseViewController {
         self.title = "Line Chart 1"
         self.options = [.toggleValues,
                         .toggleFilled,
+						.toggleGradient,
                         .toggleCircles,
                         .toggleCubic,
                         .toggleHorizontalCubic,
@@ -120,9 +121,10 @@ class LineChart1ViewController: DemoBaseViewController {
         
         set1.lineDashLengths = [5, 2.5]
         set1.highlightLineDashLengths = [5, 2.5]
-        set1.setColor(.black)
+		set1.colors = [UIColor.red, UIColor.blue]
+//        set1.setColor(.black)
         set1.setCircleColor(.black)
-        set1.lineWidth = 1
+        set1.lineWidth = 2
         set1.circleRadius = 3
         set1.drawCircleHoleEnabled = false
         set1.valueFont = .systemFont(ofSize: 9)
@@ -151,6 +153,18 @@ class LineChart1ViewController: DemoBaseViewController {
             }
             chartView.setNeedsDisplay()
             
+		case .toggleGradient:
+			for set in chartView.data!.dataSets as! [LineChartDataSet] {
+				if set.colors.isEmpty {
+					set.colors = [UIColor.red, UIColor.blue]
+				}
+				else {
+					set.colors = []
+					set.setColor(UIColor.black)
+				}
+			}
+			chartView.setNeedsDisplay()
+			
         case .toggleCircles:
             for set in chartView.data!.dataSets as! [LineChartDataSet] {
                 set.drawCirclesEnabled = !set.drawCirclesEnabled

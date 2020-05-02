@@ -33,6 +33,7 @@
     self.options = @[
                      @{@"key": @"toggleValues", @"label": @"Toggle Values"},
                      @{@"key": @"toggleFilled", @"label": @"Toggle Filled"},
+					 @{@"key": @"toggleGradient", @"label": @"Toggle Gradient"},
                      @{@"key": @"toggleCircles", @"label": @"Toggle Circles"},
                      @{@"key": @"toggleCubic", @"label": @"Toggle Cubic"},
                      @{@"key": @"toggleHorizontalCubic", @"label": @"Toggle Horizontal Cubic"},
