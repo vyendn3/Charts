@@ -14,7 +14,9 @@ import CoreGraphics
 
 open class LineChartRenderer: LineRadarRenderer
 {
-	public var onCircleRendered: ((IChartDataSet, Int, CGRect) -> Void)? = nil
+	public var onCircleWillRender: ((LineChartRenderer) -> Void)?
+	public var onCircleRendered: ((IChartDataSet, Int, CGRect) -> Void)?
+	public var onCircleDidRender: ((LineChartRenderer) -> Void)?
 	
     // TODO: Currently, this nesting isn't necessary for LineCharts. However, it will make it much easier to add a custom rotor
     // that navigates between datasets.
@@ -592,8 +594,8 @@ open class LineChartRenderer: LineRadarRenderer
             accessibleChartElements.append(element)
         }
 
+		onCircleWillRender?(self)
         context.saveGState()
-
         for i in 0 ..< dataSets.count
         {
 			guard
@@ -620,6 +622,7 @@ open class LineChartRenderer: LineRadarRenderer
                 (dataSet.circleHoleColor == nil ||
                     dataSet.circleHoleColor == NSUIColor.clear)
             
+			
             for j in _xBounds
             {
                 guard let e = dataSet.entryForIndex(j) else { break }
@@ -703,8 +706,9 @@ open class LineChartRenderer: LineRadarRenderer
                 }
             }
         }
-        
+		
         context.restoreGState()
+		onCircleDidRender?(self)
 
         // Merge nested ordered arrays into the single accessibleChartElements.
         accessibleChartElements.append(contentsOf: accessibilityOrderedElements.flatMap { $0 } )
